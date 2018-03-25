@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+}
+
+header {
+  height: 70px;
+  background-color: rgba(239, 241, 115, .5);
+  margin-bottom: 90px;
+}
+
+h1 {
+  text-align: center;
+}
+
+table {
+  margin: auto;
+}
+
+.red th {
+  border-top: dashed red;
+  border-bottom: dashed red;
+  height: 40px;
+  width: 35px;
+  padding: 10px 0 10px 0;
+}
+
+.car {
+  width:30px;
+  height:30px;
+}
+
+.boat {
+  width:30px;
+  height:30px;
+}
+
+.spacer {
+  height: 40px;
+  width: auto;
+}
+.blue th {
+    border-top: dashed blue;
+    border-bottom: dashed blue;
+    height: 40px;
+    width: 35px;
+    padding: 10px 0 10px 0;
+}
