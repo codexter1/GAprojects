@@ -16,7 +16,7 @@ table {
   margin: auto;
 }
 
-.red th {
+.red td {
   border-top: dashed red;
   border-bottom: dashed red;
   height: 40px;
@@ -38,7 +38,7 @@ table {
   height: 40px;
   width: auto;
 }
-.blue th {
+.blue td {
     border-top: dashed blue;
     border-bottom: dashed blue;
     height: 40px;
