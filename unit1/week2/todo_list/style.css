@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+  html {
+  background: url("spacey.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+header {
+  border: solid black thin;
+  border-radius: 5px;
+  height: 225px;
+  background: rgba(0,0,0,.2);
+  position: absolute;
+  margin-left: 31.2%;
+  width: 40%;
+}
+
+h1 {
+  margin-top: 13px;
+  text-align: center;
+  font-size: 60px;
+  font-family: 'Chicle', cursive;
+  color:rgba(160, 0, 0, 1);
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+h2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 45px;
+  font-family: 'Chicle', cursive;
+  color: white;
+  text-shadow: 2px 0 black, 0 1px black, 1px 0 black, 0 2px black;
+}
+
+.listadd {
+  border: solid black thin;
+  width: 80%;
+  height: 16%;
+  margin-left: 9%;
+}
+
+#bar {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 17px;
+}
+
+.left {
+  position: absolute;
+  display: inline;
+  border: solid red thin;
+  height: 100%;
+  width: 49.5%;
+}
+
+.right {
+  position: absolute;
+  display: inline;
+  border: solid green thin;
+  height: 100%;
+  width: 49.5%;
+  float: right;
+}
