@@ -4,21 +4,29 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
     <title>To-Do-List</title>
-    <link href="https://fonts.googleapis.com/css?family=Chicle" rel="stylesheet"
+    <link href="https://fonts.googleapis.com/css?family=Chicle" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet"> 
   </head>
   <body>
 
     <div class="left">
+      <ul id="notdone">
+        <li>This needs doing</li>
+      </ul>
     </div>
 
     <div class="right">
+      <ul id="done">
+        <li>This is completed</li>
+      </ul>
     </div>
 
     <header>
       <h1>Galactic Conquest</h1>
       <h2>To-Do List</h2>
       <form class="listadd"  action="index.html" method="post">
-        <input id="bar" type="text" placeholder="What do we need to do, Leader?" name="" value="">
+        <input id="bar" type="text" placeholder="Orders Commander?" name="" value="">
       </form>
     </header>
 
