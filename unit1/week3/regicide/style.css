@@ -1,0 +1,9 @@
+#board {
+  border: solid black;
+  display: block;
+  margin: 0 auto;
+}
+body {
+  background: url('https://www.walldevil.com/wallpapers/a91/woman-sword-rose.jpg') center fixed no-repeat;
+  background-size: cover;
+}
