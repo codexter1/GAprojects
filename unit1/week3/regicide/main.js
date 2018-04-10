@@ -6,12 +6,22 @@ let mapW = 15, mapH = 12;
 let currentSecond = 0, frameCount = 0, frameLastSecond = 0;
 let lastFrameTime = 0;
 
+
 let keysDown = {
+    //p1 movers
     37: false, //up
     38: false, //left
     39: false, //right
     40: false //down
 };
+
+let keysDown2 = {
+  //p2 movers
+  87: false, // w
+  65: false, // a
+  68: false, // d
+  83: false // s
+}
 
 // row is 15 column is 12.
 const gameMap = [
@@ -33,12 +43,13 @@ function Character() {
   this.tileFrom = [1,1];
   this.tileTo = [1,1];
   this.timeMoved = 0;
-  this.dimensions = [45,45];
+  this.dimensions = [50,50];
   this.position = [60,60]
   this.delayMove = 200;
 }
 
 let player = new Character();
+let player2 = new Character();
 
 Character.prototype.placeAt = function(x,y) {
     this.tileFrom = [x,y];
@@ -92,6 +103,17 @@ window.onload = function() {
             keysDown[e.keyCode] = false;
         }
     });
+
+    window.addEventListener("keydown", function(e) {
+        if(e.keyCode >= 65 && e.keyCode <= 87) {
+            keysDown[e.keyCode] = true;
+        }
+    });
+    window.addEventListener("keyup", function(e) {
+        if(e.keyCode >= 65 && e.keyCode <= 87) {
+            keysDown[e.keyCode] = false;
+        }
+    });
 };
 
 function drawGame() {
@@ -125,12 +147,31 @@ function drawGame() {
           player.timeMoved = currentFrameTime;
         }
     }
+    // player 2 gets their movement assigned
+
+    if(!player2.processMovement(currentFrameTime)) {
+        if(keysDown[87] && player2.tileFrom[1]>0 && gameMap[toIndex(player2.tileFrom[0], player2.tileFrom[1] - 1)]==1) {
+            player2.tileTo[1] -= 1;
+        }
+        else if (keysDown[83] && player2.tileFrom[1]<(mapH - 1) && gameMap[toIndex(player2.tileFrom[0], player2.tileFrom[1] + 1)]==1) {
+            player2.tileTo[1] += 1;
+        }
+        else if(keysDown[65] && player2.tileFrom[0]>0 && gameMap[toIndex(player2.tileFrom[0]-1, player2.tileFrom[1])]==1) {
+            player2.tileTo[0] -= 1;
+        }
+        else if (keysDown[68] && player2.tileFrom[0]<(mapW - 1) && gameMap[toIndex(player2.tileFrom[0]+1, player2.tileFrom[1])]==1) {
+            player2.tileTo[0] += 1;
+        }
+        if(player2.tileFrom[0] != player2.tileTo[0] || player2.tileFrom[1]!= player2.tileTo[1]) {
+          player2.timeMoved = currentFrameTime;
+        }
+    }
 
     for(let y = 0; y < mapH; y++) {
         for (let x = 0; x < mapW; x++) {
             switch (gameMap[(y*mapW)+x]) {
               case 0:
-                      ctx.fillStyle = 'rgba(200,55,55,1)';
+                      ctx.fillStyle = 'rgba(200,55,55,.8)';
                       break;
               default:
                       ctx.fillStyle = 'rgba(0,60,0,.6)';
@@ -139,9 +180,12 @@ function drawGame() {
             ctx.fillRect(x*tileW,y*tileH,tileW,tileH);
         }
     }
-
-    ctx.fillStyle = "#0000ff";
+    // draw player1
+    ctx.fillStyle = "rgba(250,250,250,.8)";
     ctx.fillRect(player.position[0], player.position[1], player.dimensions[0], player.dimensions[1]);
+    // draw player2
+    ctx.fillStyle = "rgba(0,0,0,.8)";
+    ctx.fillRect(player2.position[0], player2.position[1], player2.dimensions[0], player2.dimensions[1]);
 
 
     lastFrameTime = currentFrameTime;
