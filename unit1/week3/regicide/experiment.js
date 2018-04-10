@@ -1,44 +1,41 @@
-
 let ctx = null;
-let tileW = 53.33, tileH = 56.99;
-let mapW = 15, mapH = 12;
+let tileW = 40, tileH =40;
+let mapW = 10, mapH = 10;
 
 let currentSecond = 0, frameCount = 0, frameLastSecond = 0;
 let lastFrameTime = 0;
 
 let keysDown = {
-    37: false, //up
-    38: false, //left
-    39: false, //right
-    40: false //down
+    37: false,
+    38: false,
+    39: false,
+    40: false
 };
+
+let player = new Character();
 
 // row is 15 column is 12.
 const gameMap = [
-        0,1,1,1,1,1,1,0,1,1,1,1,1,1,0,
-        1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,
-        1,1,1,1,0,1,1,0,1,1,0,1,1,1,1,
-        1,0,1,1,1,1,1,0,1,1,1,1,1,0,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-        0,1,0,1,1,1,1,0,1,1,1,1,0,1,0,
-        1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,
-        1,0,1,1,1,1,1,0,1,1,1,1,1,0,1,
-        1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,
-        1,1,1,1,0,1,1,0,1,1,0,1,1,1,1,
-        1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,
-        0,1,1,1,1,1,1,0,1,1,1,1,1,1,0
+        0,0,0,0,0,0,0,0,0,0
+        0,1,1,1,0,1,1,1,1,0
+        0,1,0,0,0,1,0,0,0,0
+        0,1,1,1,1,1,1,1,1,0
+        0,1,0,0,1,0,0,0,1,0
+        0,1,0,0,1,0,0,0,1,0
+        0,1,1,1,1,1,1,1,1,0
+        0,1,0,0,0,0,0,0,0,0
+        0,1,1,1,0,1,1,1,1,0
+        0,0,0,0,0,0,0,0,0,0
 ];
 
 function Character() {
   this.tileFrom = [1,1];
   this.tileTo = [1,1];
   this.timeMoved = 0;
-  this.dimensions = [45,45];
-  this.position = [60,60]
-  this.delayMove = 200;
+  this.dimensions = [30,30];
+  this.position = [45,45]
+  this.delayMove = 700;
 }
-
-let player = new Character();
 
 Character.prototype.placeAt = function(x,y) {
     this.tileFrom = [x,y];
@@ -81,13 +78,14 @@ function toIndex(x,y) {
 window.onload = function() {
     ctx = document.getElementById('board').getContext('2d');
     requestAnimationFrame(drawGame);
+    ctx.font = 'bold 10pt sans-serif';
 
-    window.addEventListener("keydown", function(e) {
-        if(e.keyCode >= 37 && e.keyCode <= 40) {
+    window.addEventListener('keydown', function(e) {
+        if(e.keycode >= 37 && e.keycode <= 40) {
             keysDown[e.keyCode] = true;
         }
     });
-    window.addEventListener("keyup", function(e) {
+    window.addEventListener('keyup', function(e) {
         if(e.keyCode >= 37 && e.keyCode <= 40) {
             keysDown[e.keyCode] = false;
         }
@@ -141,45 +139,9 @@ function drawGame() {
     }
 
     ctx.fillStyle = "#0000ff";
-    ctx.fillRect(player.position[0], player.position[1], player.dimensions[0], player.dimensions[1]);
+    ctx.fillRect([player.position[0], player.position[1], player.dimensions[0], player.dimensions[1]);
 
 
     lastFrameTime = currentFrameTime;
     requestAnimationFrame(drawGame);
 }
-
-
-
-
-
-
-// // Defining our character Object:
-// function Character(type,name,team,atk,def,hp,agi) {
-//   this.type = type;
-//   this.name = name;
-//   this.team = team;
-//   this.atk = atk;
-//   this.def = def;
-//   this.hp = hp;
-//   this.agi = agi;
-// }
-//
-// // Calling our players:
-// let princessOne = new Character ('princess','Chae','light',60,60,180,50);
-//
-// let princessTwo = new Character ('princess','Harlem','dark',60,60,180,50);
-//
-// console.log(princessOne);
-// console.log(princessTwo);
-// //
-
-
-// Create mover cursor:
-// psuedo:
-//create cursor element that starts on character's position
-//
-
-
-
-
-//
