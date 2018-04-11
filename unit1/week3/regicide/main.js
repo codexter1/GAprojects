@@ -157,23 +157,24 @@ function drawGame() {
     }
     // player 2 gets their movement assigned
 
-    if(!player2.processMovement(currentFrameTime)) {
-        if(keysDown[87] && player2.tileFrom[1]>0 && gameMap[toIndex(player2.tileFrom[0], player2.tileFrom[1] - 1)]==1) {
-            player2.tileTo[1] -= 1;
+        setTimeout(function() { if(!player2.processMovement(currentFrameTime)) {
+            if(keysDown[87] && player2.tileFrom[1]>0 && gameMap[toIndex(player2.tileFrom[0], player2.tileFrom[1] - 1)]==1) {
+                player2.tileTo[1] -= 1;
+            }
+            else if (keysDown[83] && player2.tileFrom[1]<(mapH - 1) && gameMap[toIndex(player2.tileFrom[0], player2.tileFrom[1] + 1)]==1) {
+                player2.tileTo[1] += 1;
+            }
+            else if(keysDown[65] && player2.tileFrom[0]>0 && gameMap[toIndex(player2.tileFrom[0]-1, player2.tileFrom[1])]==1) {
+                player2.tileTo[0] -= 1;
+            }
+            else if (keysDown[68] && player2.tileFrom[0]<(mapW - 1) && gameMap[toIndex(player2.tileFrom[0]+1, player2.tileFrom[1])]==1) {
+                player2.tileTo[0] += 1;
+            }
+            if(player2.tileFrom[0] != player2.tileTo[0] || player2.tileFrom[1]!= player2.tileTo[1]) {
+              player2.timeMoved = currentFrameTime;
+            }
         }
-        else if (keysDown[83] && player2.tileFrom[1]<(mapH - 1) && gameMap[toIndex(player2.tileFrom[0], player2.tileFrom[1] + 1)]==1) {
-            player2.tileTo[1] += 1;
-        }
-        else if(keysDown[65] && player2.tileFrom[0]>0 && gameMap[toIndex(player2.tileFrom[0]-1, player2.tileFrom[1])]==1) {
-            player2.tileTo[0] -= 1;
-        }
-        else if (keysDown[68] && player2.tileFrom[0]<(mapW - 1) && gameMap[toIndex(player2.tileFrom[0]+1, player2.tileFrom[1])]==1) {
-            player2.tileTo[0] += 1;
-        }
-        if(player2.tileFrom[0] != player2.tileTo[0] || player2.tileFrom[1]!= player2.tileTo[1]) {
-          player2.timeMoved = currentFrameTime;
-        }
-    }
+    }, 3000);
 
     for(let y = 0; y < mapH; y++) {
         for (let x = 0; x < mapW; x++) {
@@ -201,8 +202,11 @@ function drawGame() {
 
     if(getDistance(player.position[0],player.position[1],player2.position[0],player2.position[1]) < 10) {
       alert('The princess is Dead!!')
+      location.reload();
     }
 }
+
+
 
 
 
