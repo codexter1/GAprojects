@@ -16,40 +16,40 @@ let keysDown = {
 };
 
 let keysDown2 = {
-  //p2 movers
-  87: false, // w
-  65: false, // a
-  68: false, // d
-  83: false // s
+    //p2 movers
+    87: false, // w
+    65: false, // a
+    68: false, // d
+    83: false // s
 }
 
 // row is 15 column is 12.
 const gameMap = [
         0,1,1,1,1,1,1,0,1,1,1,1,1,1,0,
-        1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,
-        1,1,1,1,0,1,1,0,1,1,0,1,1,1,1,
-        1,0,1,1,1,1,1,0,1,1,1,1,1,0,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-        0,1,0,1,1,1,1,0,1,1,1,1,0,1,0,
-        1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,
-        1,0,1,1,1,1,1,0,1,1,1,1,1,0,1,
+        1,1,1,0,1,0,1,1,1,0,1,0,1,1,1,
         1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,
-        1,1,1,1,0,1,1,0,1,1,0,1,1,1,1,
+        1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        0,1,0,1,0,1,1,0,1,1,0,1,0,1,0,
         1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,
+        1,0,1,0,1,1,0,0,0,1,1,0,1,0,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,
+        1,1,0,1,0,0,1,1,1,0,0,1,0,1,1,
         0,1,1,1,1,1,1,0,1,1,1,1,1,1,0
 ];
 
-function Character() {
+function Character(a,b) {
   this.tileFrom = [1,1];
   this.tileTo = [1,1];
   this.timeMoved = 0;
   this.dimensions = [50,50];
-  this.position = [60,60]
+  this.position = [a,b]
   this.delayMove = 200;
 }
 
-let player = new Character();
-let player2 = new Character();
+let player = new Character(2,60);
+let player2 = new Character(748,59);
 
 Character.prototype.placeAt = function(x,y) {
     this.tileFrom = [x,y];
@@ -86,6 +86,14 @@ Character.prototype.processMovement = function(t) {
 
 function toIndex(x,y) {
     return ((y * mapW) + x);
+}
+
+// collision detection function
+function getDistance (x1,y1,x2,y2) {
+  let xDistance = x2 - x1;
+  let yDistance = y2 - y1;
+
+  return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
 }
 
 
@@ -190,6 +198,10 @@ function drawGame() {
 
     lastFrameTime = currentFrameTime;
     requestAnimationFrame(drawGame);
+
+    if(getDistance(player.position[0],player.position[1],player2.position[0],player2.position[1]) < 10) {
+      alert('The princess is Dead!!')
+    }
 }
 
 
@@ -223,7 +235,9 @@ function drawGame() {
 //create cursor element that starts on character's position
 //
 
-
-
-
+// function getDistance (x1,y1,x2,y2) {
+//   let xDistance = x2 - x1;
+//   let yDistance = y2 - y1;
 //
+//   return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+// }
