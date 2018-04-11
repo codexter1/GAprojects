@@ -51,12 +51,14 @@ function Character(a,b) {
 let player = new Character(2,60);
 let player2 = new Character(748,59);
 
+//uses the dimensions of the character and the x,y cood. of the current position and the desired position to re-place the character in it's new destination
 Character.prototype.placeAt = function(x,y) {
     this.tileFrom = [x,y];
     this.tileTo = [x,y];
     this.position [((tileW*x) + ((tileW-this.dimensions[0])/2)),((tileH*y) + ((tileH-this.dimensions[1])/2))];
 };
 
+// defines how the character moves using x, y coord index to decide direction. And the delay time variable in miliseconds subtracted from the size of the tile dimensions decides how far apart each frame is to re draw. using the current frame time minus the frame time that was present at the time the movement input is placed multiplied by the sum of dimensions and delay, we instruct the script to iterate through frames as a certain rate, controlling the speed relative to the width of our character piece.
 Character.prototype.processMovement = function(t) {
       if(this.tileFrom[0]==this.tileTo[0] && this.tileFrom[1]==this.tileTo[1]) {
         return false;
@@ -83,7 +85,7 @@ Character.prototype.processMovement = function(t) {
 
       return true;
 };
-
+// translates our coordinates into pixels.
 function toIndex(x,y) {
     return ((y * mapW) + x);
 }
@@ -137,7 +139,7 @@ function drawGame() {
         frameCount = 1;
     }
     else { frameCount++; }
-
+// assigns the redrawing to key inputs and determining how much pixels(index) each keystroke increments.
     if(!player.processMovement(currentFrameTime)) {
         if(keysDown[38] && player.tileFrom[1]>0 && gameMap[toIndex(player.tileFrom[0], player.tileFrom[1] - 1)]==1) {
             player.tileTo[1] -= 1;

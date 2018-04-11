@@ -50,29 +50,3 @@ function drawGame() {
         }
     }
 }
-
-
-
-
-
-// // Defining our character Object:
-// function Character(type,name,team,atk,def,hp,agi) {
-//   this.type = type;
-//   this.name = name;
-//   this.team = team;
-//   this.atk = atk;
-//   this.def = def;
-//   this.hp = hp;
-//   this.agi = agi;
-// }
-//
-// Character.prototype.start = function() {
-//     return console.log('hi');
-// }
-//
-// console.log(Character);
-// // Calling our players:
-// let princessOne = new Character ('princess','Chae','light',60,60,180,50, Character.start());
-// console.log(princessOne);
-//
-// let princessTwo = new Character ('princess','Harlem','dark',60,60,180,50);

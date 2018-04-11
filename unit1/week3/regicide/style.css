@@ -7,3 +7,28 @@ body {
   background: url('https://www.walldevil.com/wallpapers/a91/woman-sword-rose.jpg') center fixed no-repeat;
   background-size: cover;
 }
+
+.descript {
+  height: 250px;
+  background: linear-gradient(rgba(250,200,200.5), rgba(0,0,0,.6));
+  margin: 25%;
+  text-align: center;
+  border: solid black;
+}
+h1 {
+  font-family: 'Black And White Picture', sans-serif;
+}
+a {
+  font-size: 40px;
+  color: red;
+  text-decoration: none;
+}
+p {
+  font-size: 19px;
+  color: white;
+}
+span {
+  font-size: 24px;
+  color: black;
+  font-style: oblique bold;
+}
